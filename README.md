@@ -8,12 +8,9 @@
     - C#, .NET Windows Forms, Visual Studio, GitHub
 
 - 사용한 컨트롤
-    - 
-    - 
-    - 
-    - 
+    - Label, Button, ComboBox, TrackBar, PictureBox
 - 사용한 기술과 구현한 기능
-    -
+    - Visual Studio를 이용하여 UI 디자인
     -
     -
     -
@@ -26,7 +23,11 @@
 ![실행화면](img/step1.png)
 
 - 구현한 내용 (위 그림 참조)
-    - 
+    - UI 구성 : 도형선택, 색선택, 굵기선택, 캔버스 구성
+    - 도형선택 : 버튼 3개를 이용해서 직선, 사각형, 원 선택
+    - 색선택 : ComboBox를 이용해서 검은색, 빨간색, 파란색, 초록색 선택
+    - 선굵기선택 : TrachBar 이용해서 선 굵기를 1~10단계로 선택
+    - 캔버스 : PictureBox를 이용해서 캔버스 구성
 
 ## 실행 화면 (과제2)
 - 코드의 실행 스크린샷과 구현 내용 설명
