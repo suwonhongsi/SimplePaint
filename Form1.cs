@@ -50,12 +50,12 @@ namespace SimplePaint
 
             // 색상 콤보박스 이벤트 연결
             cmbColor.SelectedIndexChanged += cmbColor_SelectedIndexChanged;
-            cmbColor.SelectedIndex = 0; // 기본값: Black
+            cmbColor.SelectedIndex = 1; // 기본값
 
             // 선 두께 트랙바 이벤트 연결
             trbLineWidth.Minimum = 1; // 최소값
             trbLineWidth.Maximum = 10; // 최대값
-            trbLineWidth.Value = 2;
+            trbLineWidth.Value = 5;
             trbLineWidth.ValueChanged += trbLineWidth_ValueChanged;
 
         }
