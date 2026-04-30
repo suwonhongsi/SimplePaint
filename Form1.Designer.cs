@@ -96,6 +96,7 @@
             // 
             // picCanvas
             // 
+            this.picCanvas.BackColor = System.Drawing.Color.White;
             this.picCanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picCanvas.Location = new System.Drawing.Point(50, 338);
             this.picCanvas.Name = "picCanvas";
