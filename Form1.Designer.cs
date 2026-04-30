@@ -92,7 +92,7 @@
             this.groupBox1.Size = new System.Drawing.Size(240, 165);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "선 두께";
+            this.groupBox1.Text = "굵기 선택";
             // 
             // picCanvas
             // 
