@@ -130,7 +130,7 @@
             this.btnSaveFile.TabIndex = 4;
             this.btnSaveFile.Text = "저장";
             this.btnSaveFile.UseVisualStyleBackColor = false;
-            this.btnSaveFile.Click += new System.EventHandler(this.Button_open_Click);
+            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
             // btnline
             // 
