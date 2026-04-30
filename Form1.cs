@@ -35,11 +35,28 @@ namespace SimplePaint
 
             picCanvas.Image = canvasBitmap; // 그린 그림을 화면(PictureBox)에표시
 
-            cmbColor.SelectedIndex = 0;
+            // 마우스 이벤트 연결
+            picCanvas.MouseDown += picCanvas_MouseDown;
+            picCanvas.MouseMove += picCanvas_MouseMove;
+            picCanvas.MouseUp += picCanvas_MouseUp;
 
+            // picCanvas가 다시 그려질 때 PicCanvas_Paint 함수를 실행하도록 연결
+            picCanvas.Paint += picCanvas_Paint;
+
+            // 도형 선택 버튼 이벤트 연결
+            btnline.Click += btnline_Click;
+            btnRectangle.Click += btnRectangle_Click;
+            btnCircle.Click += btnCircle_Click;
+
+            // 색상 콤보박스 이벤트 연결
+            cmbColor.SelectedIndexChanged += cmbColor_SelectedIndexChanged;
+            cmbColor.SelectedIndex = 0; // 기본값: Black
+
+            // 선 두께 트랙바 이벤트 연결
             trbLineWidth.Minimum = 1; // 최소값
             trbLineWidth.Maximum = 10; // 최대값
             trbLineWidth.Value = 2;
+            trbLineWidth.ValueChanged += trbLineWidth_ValueChanged;
 
         }
 
