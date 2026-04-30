@@ -103,6 +103,10 @@
             this.picCanvas.Size = new System.Drawing.Size(1227, 456);
             this.picCanvas.TabIndex = 3;
             this.picCanvas.TabStop = false;
+            this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.picCanvas_Paint);
+            this.picCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseDown);
+            this.picCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseMove);
+            this.picCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseUp);
             // 
             // btnOpenFile
             // 
@@ -141,6 +145,7 @@
             this.btnline.Text = "직선";
             this.btnline.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnline.UseVisualStyleBackColor = true;
+            this.btnline.Click += new System.EventHandler(this.btnline_Click);
             // 
             // btnRectangle
             // 
@@ -155,6 +160,7 @@
             this.btnRectangle.Text = "사각형";
             this.btnRectangle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRectangle.UseVisualStyleBackColor = true;
+            this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
             // 
             // btnCircle
             // 
@@ -169,6 +175,7 @@
             this.btnCircle.Text = "원";
             this.btnCircle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCircle.UseVisualStyleBackColor = true;
+            this.btnCircle.Click += new System.EventHandler(this.btnCircle_Click);
             // 
             // cmbColor
             // 
@@ -182,6 +189,7 @@
             this.cmbColor.Name = "cmbColor";
             this.cmbColor.Size = new System.Drawing.Size(177, 40);
             this.cmbColor.TabIndex = 0;
+            this.cmbColor.SelectedIndexChanged += new System.EventHandler(this.cmbColor_SelectedIndexChanged);
             // 
             // trbLineWidth
             // 
@@ -189,6 +197,7 @@
             this.trbLineWidth.Name = "trbLineWidth";
             this.trbLineWidth.Size = new System.Drawing.Size(228, 90);
             this.trbLineWidth.TabIndex = 0;
+            this.trbLineWidth.ValueChanged += new System.EventHandler(this.trbLineWidth_ValueChanged);
             // 
             // Form1
             // 
