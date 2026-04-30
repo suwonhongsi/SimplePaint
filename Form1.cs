@@ -35,6 +35,12 @@ namespace SimplePaint
 
             picCanvas.Image = canvasBitmap; // 그린 그림을 화면(PictureBox)에표시
 
+            cmbColor.SelectedIndex = 0;
+
+            trbLineWidth.Minimum = 1; // 최소값
+            trbLineWidth.Maximum = 10; // 최대값
+            trbLineWidth.Value = 2;
+
         }
 
         private void Button_open_Click(object sender, EventArgs e)
