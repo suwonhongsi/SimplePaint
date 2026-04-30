@@ -100,7 +100,7 @@
             this.picCanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picCanvas.Location = new System.Drawing.Point(50, 338);
             this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(1227, 456);
+            this.picCanvas.Size = new System.Drawing.Size(1269, 572);
             this.picCanvas.TabIndex = 3;
             this.picCanvas.TabStop = false;
             this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.picCanvas_Paint);
@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1328, 823);
+            this.ClientSize = new System.Drawing.Size(1347, 937);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.btnOpenFile);
             this.Controls.Add(this.picCanvas);
