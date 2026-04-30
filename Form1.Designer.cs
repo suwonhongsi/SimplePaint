@@ -33,7 +33,6 @@
             this.GroupBox_one = new System.Windows.Forms.GroupBox();
             this.GroupBox_two = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.picCanvas = new System.Windows.Forms.PictureBox();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnSaveFile = new System.Windows.Forms.Button();
             this.btnline = new System.Windows.Forms.Button();
@@ -41,11 +40,17 @@
             this.btnCircle = new System.Windows.Forms.Button();
             this.cmbColor = new System.Windows.Forms.ComboBox();
             this.trbLineWidth = new System.Windows.Forms.TrackBar();
+            this.pnlViewPort = new System.Windows.Forms.Panel();
+            this.picCanvas = new System.Windows.Forms.PictureBox();
+            this.btnUP = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.lblZoom = new System.Windows.Forms.Label();
             this.GroupBox_one.SuspendLayout();
             this.GroupBox_two.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbLineWidth)).BeginInit();
+            this.pnlViewPort.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAppName
@@ -93,20 +98,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "굵기 선택";
-            // 
-            // picCanvas
-            // 
-            this.picCanvas.BackColor = System.Drawing.Color.White;
-            this.picCanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picCanvas.Location = new System.Drawing.Point(50, 338);
-            this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(1269, 572);
-            this.picCanvas.TabIndex = 3;
-            this.picCanvas.TabStop = false;
-            this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.picCanvas_Paint);
-            this.picCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseDown);
-            this.picCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseMove);
-            this.picCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseUp);
             // 
             // btnOpenFile
             // 
@@ -199,14 +190,70 @@
             this.trbLineWidth.TabIndex = 0;
             this.trbLineWidth.ValueChanged += new System.EventHandler(this.trbLineWidth_ValueChanged);
             // 
+            // pnlViewPort
+            // 
+            this.pnlViewPort.AutoScroll = true;
+            this.pnlViewPort.Controls.Add(this.picCanvas);
+            this.pnlViewPort.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlViewPort.Location = new System.Drawing.Point(0, 338);
+            this.pnlViewPort.Name = "pnlViewPort";
+            this.pnlViewPort.Size = new System.Drawing.Size(1347, 599);
+            this.pnlViewPort.TabIndex = 5;
+            // 
+            // picCanvas
+            // 
+            this.picCanvas.BackColor = System.Drawing.Color.White;
+            this.picCanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picCanvas.Location = new System.Drawing.Point(22, 13);
+            this.picCanvas.Name = "picCanvas";
+            this.picCanvas.Size = new System.Drawing.Size(1269, 572);
+            this.picCanvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCanvas.TabIndex = 5;
+            this.picCanvas.TabStop = false;
+            // 
+            // btnUP
+            // 
+            this.btnUP.Font = new System.Drawing.Font("돋움체", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUP.Location = new System.Drawing.Point(1019, 72);
+            this.btnUP.Name = "btnUP";
+            this.btnUP.Size = new System.Drawing.Size(73, 72);
+            this.btnUP.TabIndex = 6;
+            this.btnUP.Text = "+";
+            this.btnUP.UseVisualStyleBackColor = true;
+            this.btnUP.Click += new System.EventHandler(this.btnUP_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Font = new System.Drawing.Font("돋움체", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDown.Location = new System.Drawing.Point(1229, 72);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(73, 72);
+            this.btnDown.TabIndex = 6;
+            this.btnDown.Text = "-";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblZoom.Location = new System.Drawing.Point(1107, 87);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(105, 45);
+            this.lblZoom.TabIndex = 7;
+            this.lblZoom.Text = "100%";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1347, 937);
+            this.Controls.Add(this.lblZoom);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUP);
+            this.Controls.Add(this.pnlViewPort);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.btnOpenFile);
-            this.Controls.Add(this.picCanvas);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GroupBox_two);
             this.Controls.Add(this.GroupBox_one);
@@ -217,8 +264,9 @@
             this.GroupBox_two.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbLineWidth)).EndInit();
+            this.pnlViewPort.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,7 +278,6 @@
         private System.Windows.Forms.GroupBox GroupBox_one;
         private System.Windows.Forms.GroupBox GroupBox_two;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox picCanvas;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Button btnSaveFile;
         private System.Windows.Forms.Button btnline;
@@ -238,6 +285,11 @@
         private System.Windows.Forms.Button btnRectangle;
         private System.Windows.Forms.ComboBox cmbColor;
         private System.Windows.Forms.TrackBar trbLineWidth;
+        private System.Windows.Forms.Panel pnlViewPort;
+        private System.Windows.Forms.PictureBox picCanvas;
+        private System.Windows.Forms.Button btnUP;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Label lblZoom;
     }
 }
 

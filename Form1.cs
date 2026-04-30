@@ -67,20 +67,73 @@ namespace SimplePaint
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "이미지 파일|*.png;*.jpg;*.jpeg;*.bmp";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // 새 이미지 로드
+                    Image loadedImage = Image.FromFile(openFileDialog.FileName);
 
+                    // 기존 비트맵과 그래픽 리소스 해제
+                    canvasGraphics?.Dispose();
+                    canvasBitmap?.Dispose();
+
+                    // 이미지 크기에 맞는 새 비트맵 생성 및 그리기
+                    canvasBitmap = new Bitmap(loadedImage.Width, loadedImage.Height);
+                    canvasGraphics = Graphics.FromImage(canvasBitmap);
+                    canvasGraphics.DrawImage(loadedImage, 0, 0, loadedImage.Width, loadedImage.Height);
+
+                    loadedImage.Dispose(); // 원본 파일 연결 해제
+
+                    // 초기화 설정
+                    picCanvas.Image = canvasBitmap;
+                    zoomFactor = 1.0f; // 배율 초기화
+                    UpdateCanvasSize(); // 캔버스 크기 조절
+
+                    picCanvas.Width = canvasBitmap.Width;
+                    picCanvas.Height = canvasBitmap.Height;
+                }
+            }
+        }
+
+        private void UpdateCanvasSize()
+        {
+            if (canvasBitmap == null) return;
+
+            // 배율에 따라 픽처박스 크기를 조절하면 감싸고 있는 패널에 스크롤바가 생깁니다.
+            picCanvas.Width = (int)(canvasBitmap.Width * zoomFactor);
+            picCanvas.Height = (int)(canvasBitmap.Height * zoomFactor);
+
+            lblZoom.Text = string.Format("({0}%)", (int)(zoomFactor * 100));
+        }
+
+        private void btnZoomIn_Click(object sender, EventArgs e) // 확대
+        {
+            zoomFactor += 0.1f;
+            UpdateCanvasSize();
+        }
+
+        private void btnZoomOut_Click(object sender, EventArgs e) // 축소
+        {
+            if (zoomFactor > 0.1f)
+            {
+                zoomFactor -= 0.1f;
+                UpdateCanvasSize();
+            }
         }
 
         private void picCanvas_MouseDown(object sender, MouseEventArgs e)
         {
             isDrawing = true; // 드래그 시작
-            startPoint = e.Location; // 시작점 저장
+            startPoint = new Point((int)(e.X / zoomFactor), (int)(e.Y / zoomFactor));
         }
 
         private void picCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (!isDrawing) return; // 그림 그리기와 상관 없는 마우스 움직임은무시
 
-            endPoint = e.Location; // 현재 위치 갱신
+            endPoint = new Point((int)(e.X / zoomFactor), (int)(e.Y / zoomFactor));
 
             // picCanvas를 다시 그려라 (Paint 이벤트를 발생시킨다)
             picCanvas.Invalidate(); // 화면 다시 그리기 (미리보기) 
@@ -91,7 +144,7 @@ namespace SimplePaint
             if (!isDrawing) return; // 그림 그리기와 상관 없는 마우스 움직임은무시
 
             isDrawing = false; // 드래그 종료
-            endPoint = e.Location;
+            endPoint = new Point((int)(e.X / zoomFactor), (int)(e.Y / zoomFactor));
 
             // 실제 비트맵에 도형 그리기 (확정)
             using (Pen pen = new Pen(currentColor, currentLineWidth))
@@ -104,6 +157,8 @@ namespace SimplePaint
         private void picCanvas_Paint(object sender, PaintEventArgs e)
         {
             if (!isDrawing) return;
+
+            e.Graphics.ScaleTransform(zoomFactor, zoomFactor);
 
             // 점선 펜 (미리보기용)
             using (Pen previewPen = new Pen(currentColor, currentLineWidth))
@@ -216,7 +271,6 @@ namespace SimplePaint
                         // 4. 비트맵을 지정된 경로와 포맷으로 저장
                         canvasBitmap.Save(saveFileDialog.FileName, format);
 
-                        MessageBox.Show("그림이 성공적으로 저장되었습니다!", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -224,6 +278,28 @@ namespace SimplePaint
                     }
                 }
             }
+        }
+
+        private float zoomFactor = 1.0f; // 확대 배율
+
+        private void btnUP_Click(object sender, EventArgs e)
+        {
+            if (canvasBitmap == null) return;
+
+            zoomFactor += 0.1f; // 10%씩 확대
+            if (zoomFactor > 5.0f) zoomFactor = 5.0f; // 최대 5배 제한
+
+            UpdateCanvasSize();
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (canvasBitmap == null) return;
+
+            zoomFactor -= 0.1f; // 10%씩 축소
+            if (zoomFactor < 0.1f) zoomFactor = 0.1f; // 최소 10% 제한
+
+            UpdateCanvasSize();
         }
     }
 }
