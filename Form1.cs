@@ -16,5 +16,15 @@ namespace SimplePaint
         {
             InitializeComponent();
         }
+
+        private void Button_open_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
